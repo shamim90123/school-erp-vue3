@@ -20,6 +20,9 @@
         password: '',
       };
     },
+    created () {
+      console.log('Login Created')
+    },
     methods: {
       login() {
         this.$router.push('/home')

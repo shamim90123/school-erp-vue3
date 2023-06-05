@@ -1,15 +1,17 @@
 <template>
   <div id="app">
-    <LoginForm />
+    <main>
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
 <script>
-  import LoginForm from './components/modules/auth/Login.vue';
 
   export default {
-    components: {
-      LoginForm,
-    },
+    name: 'App',
+    created () {
+      console.log('App Component Created')
+    }
   };
 </script>

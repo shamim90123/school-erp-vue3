@@ -1,11 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-// Import your views/components
-// import Home from './views/Home.vue';
 import RegistrationForm from '../components/modules/auth/Registration.vue';
+import LoginForm from '../components/modules/auth/Login.vue';
 import homePage from '../components/modules/common/home.vue';
 
 const routes = [
+  {
+    path: '/',
+    name: 'LoginForm',
+    component: LoginForm,
+  },
   {
     path: '/home',
     name: 'homePage',
