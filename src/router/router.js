@@ -5,6 +5,8 @@ import LoginForm from '../components/modules/auth/Login.vue';
 import homePage from '../components/modules/common/home.vue';
 import LayoutPage from "@/layouts/Layout.vue";
 
+const NotFoundPage = () => import('../views/pages/notFoundPage.vue')
+
 const routes = [
   // {
   //   path: '/',
@@ -31,6 +33,10 @@ const routes = [
       },
       // Other child routes...
     ],
+  },
+  {
+    path: '/:catchAll(.*)',
+    component: NotFoundPage
   },
 ];
 
