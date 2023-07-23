@@ -1,6 +1,6 @@
 <template>
   <div class="card-container">
-    <p v-t="'greeting'"></p>
+    <!-- <p v-t="'student_management'"></p> -->
     <Card v-for="card in cards" :key="card.id" :title="card.title" :description="card.description" />
   </div>
 </template>
@@ -16,13 +16,16 @@ export default {
   data() {
     return {
       cards: [
-        { id: 1, title: "Card 1", description: "This is the description for Card 1." },
-        { id: 2, title: "Card 2", description: "This is the description for Card 2." },
-        { id: 3, title: "Card 3", description: "This is the description for Card 3." },
-        { id: 4, title: "Card 4", description: "This is the description for Card 4." },
-        { id: 5, title: "Card 5", description: "This is the description for Card 5." },
+        { id: 1, title: this.$t('student_management'), description:  "This is the student management description." },
+        { id: 2, title: this.$t('teacher_management'), description: "This is the description for teacher management." },
+        { id: 3, title: this.$t('parent_management'), description: "This is the description for parent management." },
+        { id: 4, title: this.$t('class_management'), description: "This is the description for class management." },
+        { id: 5, title: this.$t('section_management'), description: "This is the description for section management." },
       ],
     };
+  },
+  created() {
+    console.log('HomePage created');
   },
   methods: {
   }
