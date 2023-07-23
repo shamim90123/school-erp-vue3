@@ -1,5 +1,7 @@
 <template>
   <div class="card-container">
+    <p>{{ $t('message') }}</p>
+    <p v-t="'greeting'"></p>
     <Card v-for="card in cards" :key="card.id" :title="card.title" :description="card.description" />
   </div>
 </template>
