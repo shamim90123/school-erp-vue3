@@ -5,6 +5,9 @@ import router from './router/router'
 
 const app = createApp(App);
 
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
+
 app.use(router);
 
 // Use the i18n plugin

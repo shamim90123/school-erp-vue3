@@ -1,12 +1,14 @@
 <template>
   <div class="login-container">
     <div class="login-card">
-      <h2>Login</h2>
+      <h2>Login <button @click="changeLanguage" class="btn btn-sm btn-success" style="width:auto;float: right;">{{ $i18n.locale }}</button></h2>
+  
       <form @submit.prevent="login">
         <input type="text" v-model="username" placeholder="Username" />
         <input type="password" v-model="password" placeholder="Password" />
         <button type="submit">Login</button>
       </form>
+      <p class="float-right">{{ $t('greeting') }}</p>
     </div>
   </div>
 </template>
@@ -28,6 +30,10 @@
         this.$router.push('/home')
         // Perform login logic here
         // You can use Axios or fetch API to send a login request to the server
+      },
+      changeLanguage() {
+        const newLocale = this.$i18n.locale === 'en' ? 'fr' : 'en';
+        this.$i18n.locale = newLocale;
       },
     },
   };

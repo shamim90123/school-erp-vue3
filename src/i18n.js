@@ -4,7 +4,7 @@ import fr from './locales/bn';
 
 const i18n = createI18n({
   legacy: false, // Use the Composition API
-  locale: 'fr', // Set the default locale
+  locale: 'en', // Set the default locale
   messages: {
     en,
     fr,
