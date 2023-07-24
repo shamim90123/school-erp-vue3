@@ -1,4 +1,4 @@
-// locales/fr.js
+// locales/bn.js
 export default {
     message: 'হ্যালো, ওয়েলকাম!!',
     greeting: 'সুপ্রভাত!',

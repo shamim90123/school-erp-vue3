@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <div class="login-card">
-      <h2>Login <button @click="changeLanguage" class="btn btn-sm btn-success" style="width:auto;float: right;">{{ $i18n.locale }}</button></h2>
+      <h2>Login <button @click="changeLanguage" class="btn btn-sm btn-success" style="width:auto;float: right;">{{ $i18n.locale == 'en' ? 'Bn' : 'En' }}</button></h2>
   
       <form @submit.prevent="login">
         <input type="text" v-model="username" placeholder="Username" />
@@ -32,7 +32,7 @@
         // You can use Axios or fetch API to send a login request to the server
       },
       changeLanguage() {
-        const newLocale = this.$i18n.locale === 'en' ? 'fr' : 'en';
+        const newLocale = this.$i18n.locale === 'en' ? 'bn' : 'en';
         this.$i18n.locale = newLocale;
       },
     },
