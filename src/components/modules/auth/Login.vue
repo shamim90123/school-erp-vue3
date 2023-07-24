@@ -14,16 +14,20 @@
 </template>
 
   <script>
+  // import api_config
+  import { authServiceBaseURL } from '@/config/api_config.js'
+
   export default {
     name: 'LoginForm',
     data() {
       return {
-        username: '',
-        password: '',
+        username: 'opt.shamim@gmail.com',
+        password: '123456',
       };
     },
     created () {
       console.log('Login Created')
+      console.log(authServiceBaseURL)
     },
     methods: {
       login() {
