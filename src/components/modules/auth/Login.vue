@@ -16,6 +16,7 @@
   <script>
   // import api_config
   import { authServiceBaseURL } from '@/config/api_config.js'
+  import axios from 'axios'
 
   export default {
     name: 'LoginForm',
@@ -30,10 +31,24 @@
       console.log(authServiceBaseURL)
     },
     methods: {
-      login() {
-        this.$router.push('/home')
-        // Perform login logic here
+      async login() {
         // You can use Axios or fetch API to send a login request to the server
+        const loginData = {
+          email: this.username,
+          password: this.password
+        }
+
+         // Make the API call using Axios
+      axios.post('http://127.0.0.1:8000/api/auth/login', loginData)
+        .then(response => {
+          console.log('Login successful!', response)
+          this.$router.push('/home')
+        })
+        .catch(error => {
+          console.error('Login failed:', error.response.data);
+        });
+
+
       },
       changeLanguage() {
         const newLocale = this.$i18n.locale === 'en' ? 'bn' : 'en';

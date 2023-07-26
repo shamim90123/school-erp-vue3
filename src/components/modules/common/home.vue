@@ -1,12 +1,14 @@
 <template>
   <div class="card-container">
     <!-- <p v-t="'student_management'"></p> -->
+    {{ homeData }}
     <Card v-for="card in cards" :key="card.id" :title="card.title" :description="card.description" />
   </div>
 </template>
 
 <script>
 import Card from "@/components/common/Card.vue";
+import axios from 'axios'
 
 export default {
   name: 'HomePage',
@@ -15,6 +17,7 @@ export default {
   },
   data() {
     return {
+      homeData: {},
       cards: [
         { id: 1, title: this.$t('student_management'), description:  "This is the student management description." },
         { id: 2, title: this.$t('teacher_management'), description: "This is the description for teacher management." },
@@ -26,9 +29,22 @@ export default {
   },
   created() {
     console.log('HomePage created');
+    this.loadData()
   },
   methods: {
+    async loadData() {
+        // Make the API call using Axios
+        axios.get('http://127.0.0.1:8001/get-components')
+        .then(response => {
+          // Handle the successful response
+          this.homeData = response.data;
+        })
+        .catch(error => {
+          // Handle errors from the API
+          console.error('Failed to fetch data:', error);
+        });
   }
+}
 };
 </script>
 
