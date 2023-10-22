@@ -1,1 +1,2 @@
-export const authServiceBaseURL = 'http://127.0.0.1:8000'
+export const authServiceBaseURL = 'http://school-auth-service.local/'
+export const commonServiceBaseURl = 'http://school-common-service.local/'
