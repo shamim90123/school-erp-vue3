@@ -16,8 +16,7 @@
 
   <script>
   // import api_config
-  import { authServiceBaseURL } from '@/config/api_config.js'
-  import axios from 'axios'
+  import RestApi, { authServiceBaseURL } from '@/config/api_config.js'
 
   export default {
     name: 'LoginForm',
@@ -38,16 +37,24 @@
           email: this.username,
           password: this.password
         }
+        const apiResponse = await RestApi.postData(authServiceBaseURL, '/api/auth/login', loginData)
+        console.log(apiResponse)
+        if (apiResponse.user) {
+          console.log('Login successful!', apiResponse.data)
+          this.$router.push('/home')
+        } else {
+          console.error('Login failed:', apiResponse.data)
+        }
 
          // Make the API call using Axios
-      axios.post('http://127.0.0.1:8000/api/auth/login', loginData)
-        .then(response => {
-          console.log('Login successful!', response)
-          this.$router.push('/home')
-        })
-        .catch(error => {
-          console.error('Login failed:', error.response.data);
-        });
+      // axios.post('http://127.0.0.1:8000/api/auth/login', loginData)
+      //   .then(response => {
+      //     console.log('Login successful!', response)
+      //     this.$router.push('/home')
+      //   })
+      //   .catch(error => {
+      //     console.error('Login failed:', error.response.data);
+      //   });
 
 
       },

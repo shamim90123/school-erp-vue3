@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import RegistrationForm from '../components/modules/auth/Registration.vue';
-import LoginForm from '../components/modules/auth/Login.vue';
-import homePage from '../components/modules/common/home.vue';
+import RegistrationForm from '../modules/auth/Registration.vue';
+import LoginForm from '../modules/auth/Login.vue';
+import homePage from '../modules/common/home.vue';
 import LayoutPage from "@/layouts/Layout.vue";
 
 const NotFoundPage = () => import('../views/pages/notFoundPage.vue')
