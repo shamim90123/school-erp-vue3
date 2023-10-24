@@ -49,6 +49,6 @@
   
   <script>
   export default {
-    name: 'bootstrapVue',
+    name: 'bootstrap-vue-test',
   }
   </script>
