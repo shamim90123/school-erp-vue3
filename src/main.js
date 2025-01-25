@@ -1,16 +1,19 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import i18n from './i18n'
-import router from './router/router'
+import { createApp } from 'vue';
+
+import App from './App.vue';
+import i18n from './i18n';
+import router from './router/router';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap';
+
+import { BootstrapVue3 } from 'bootstrap-vue-3';
+import 'bootstrap-vue-3/dist/bootstrap-vue-3.css';
 
 const app = createApp(App);
 
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap"
-
+app.use(BootstrapVue3);
 app.use(router);
-
-// Use the i18n plugin
 app.use(i18n);
 
 app.mount('#app');
