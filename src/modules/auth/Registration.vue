@@ -11,22 +11,31 @@
   </div>
 </template>
 
-  <script>
-  export default {
-    name: 'RegistrationForm',
-    data() {
-      return {
-        username: '',
-        password: '',
-      };
-    },
-    methods: {
-      login() {
-        // Perform login logic here
-        // You can use Axios or fetch API to send a login request to the server
-      },
-    },
-  };
+<script>
+import { ref } from 'vue'; // Import ref from Vue 3
+
+export default {
+  name: 'RegistrationForm',
+  setup() {
+    // Using Composition API to define reactive data
+    const username = ref('');
+    const password = ref('');
+
+    // Login method to handle the form submission
+    const login = () => {
+      // Perform login logic here
+      // You can use Axios or fetch API to send a login request to the server
+      console.log('Logging in with', username.value, password.value);
+    };
+
+    // Return values to be used in the template
+    return {
+      username,
+      password,
+      login
+    };
+  }
+};
 </script>
 
 <style>

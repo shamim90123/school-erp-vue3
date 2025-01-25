@@ -2,78 +2,92 @@
   <div class="login-container">
     <div class="login-card my-component">
       <p>SCSS implementation!</p>
-      <h2>Login <button @click="changeLanguage" class="btn btn-sm btn-success" style="width:auto;float: right;">{{ $i18n.locale == 'en' ? 'Bn' : 'En' }}</button></h2>
-  
+      <h2>
+        Login
+        <button
+          @click="changeLanguage"
+          class="btn btn-sm btn-success"
+          style="width:auto;float: right;"
+        >
+          {{ currentLocale === 'en' ? 'Bn' : 'En' }}
+        </button>
+      </h2>
+
       <form @submit.prevent="login">
         <input type="text" v-model="username" placeholder="Username" />
         <input type="password" v-model="password" placeholder="Password" />
         <button type="submit">Login</button>
       </form>
-      <p class="float-right">{{ $t('greeting') }}</p>
+      <p class="float-right">{{ greeting }}</p>
     </div>
   </div>
 </template>
 
-  <script>
-  // import api_config
-  import RestApi, { authServiceBaseURL } from '@/config/api_config.js'
+<script>
+// Import API configuration
+import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n'; // Import useI18n hook
+import { useRouter } from 'vue-router'; // Import useRouter hook
+import RestApi, { authServiceBaseURL } from '@/config/api_config.js';
 
-  export default {
-    name: 'LoginForm',
-    data() {
-      return {
-        username: 'opt.shamim@gmail.com',
-        password: '123456',
+export default {
+  name: 'LoginForm',
+  setup() {
+    const { t, locale } = useI18n(); // Get translation function and locale from i18n
+    const router = useRouter(); // Get the router instance
+
+    const username = ref('opt.shamim@gmail.com');
+    const password = ref('123456');
+
+    // Reactive greeting that updates when locale changes
+    const greeting = computed(() => t('greeting')); // Make greeting reactive
+
+    const login = async () => {
+      const loginData = {
+        email: username.value,
+        password: password.value,
       };
-    },
-    created () {
-      console.log('Login Created')
-      console.log(authServiceBaseURL)
-    },
-    methods: {
-      async login() {
-        // You can use Axios or fetch API to send a login request to the server
-        const loginData = {
-          email: this.username,
-          password: this.password
-        }
-        const apiResponse = await RestApi.postData(authServiceBaseURL, '/api/auth/login', loginData)
-        console.log(apiResponse)
+
+      try {
+        const apiResponse = await RestApi.postData(authServiceBaseURL, '/api/auth/login', loginData);
+        console.log(apiResponse);
+        
         if (apiResponse.user) {
-          console.log('Login successful!', apiResponse.data)
-          this.$router.push('/home')
+          console.log('Login successful!', apiResponse.data);
+          // Navigate to home after successful login
+          router.push('/home');
         } else {
-          console.error('Login failed:', apiResponse.data)
+          console.error('Login failed:', apiResponse.data);
         }
+      } catch (error) {
+        console.error('Login failed:', error);
+      }
+    };
 
-         // Make the API call using Axios
-      // axios.post('http://127.0.0.1:8000/api/auth/login', loginData)
-      //   .then(response => {
-      //     console.log('Login successful!', response)
-      //     this.$router.push('/home')
-      //   })
-      //   .catch(error => {
-      //     console.error('Login failed:', error.response.data);
-      //   });
+    const changeLanguage = () => {
+      const newLocale = locale.value === 'en' ? 'bn' : 'en'; // Use locale.value for reactivity
+      locale.value = newLocale; // Change the locale dynamically
+    };
 
-
-      },
-      changeLanguage() {
-        const newLocale = this.$i18n.locale === 'en' ? 'bn' : 'en';
-        this.$i18n.locale = newLocale;
-      },
-    },
-  };
+    return {
+      username,
+      password,
+      login,
+      changeLanguage,
+      currentLocale: locale, // Make locale accessible in the template
+      greeting, // Use the computed greeting for the template
+    };
+  },
+};
 </script>
-
 
 <style lang="scss">
 // Define SaaS styles here
 $primary-color: #007bff;
-.my-component {
-  color: $primary-color;
-  p {
-    font-size: 20px;
+  .my-component {
+    color: $primary-color;
+    p {
+      font-size: 20px;
+    }
   }
-}
 </style>
