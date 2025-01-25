@@ -9,11 +9,6 @@ import bootstrapVueTest from '../modules/auth/bootstrap-vue-test.vue';
 const NotFoundPage = () => import('../views/pages/notFoundPage.vue')
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'LoginForm',
-  //   component: LoginForm,
-  // },
   {
     path: '/bootstrapVueTest',
     name: 'bootstrapVueTest',
